@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { AuthenticateService } from '../services/authenticate.service';
-
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -33,7 +33,8 @@ export class LoginPage {
   constructor(
     private formBuilder: FormBuilder,
     private authenticateUser: AuthenticateService,
-    private navController: NavController
+    private navController: NavController,
+    private storage: Storage
   ) {
     this.loginForm = this.formBuilder.group({
       email: new FormControl(
@@ -55,6 +56,7 @@ export class LoginPage {
         credentials
       );
       if (this.responseAuthenticateUser.isAuthenticated) {
+        this.storage.set('isAuthenticated', true);
         this.navController.navigateForward('/home');
       } else {
         this.messageAuthenticated = this.responseAuthenticateUser.message;
