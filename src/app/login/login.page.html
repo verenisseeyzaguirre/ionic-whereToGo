@@ -1,9 +1,9 @@
 <ion-content>
-  <br /><br /><br />
+  <br /><br /><br /><br /><br />
   <figure class="ion-text-center ion-padding">
     <img src="assets/images/logo-h.png" />
   </figure>
-  <form [formGroup]="loginForm">
+  <form [formGroup]="loginForm" (ngSubmit)="authenticateUser(loginForm.value)">
     <ion-item>
       <ion-label>Email</ion-label>
       <ion-input type="email" formControlName="email"></ion-input>
@@ -30,5 +30,13 @@
         </div>
       </ng-container>
     </div>
+    <br /><br /><br />
+    <ion-button
+      expand="block"
+      shape="round"
+      [disabled]="!loginForm.valid"
+      type="submit"
+      >Ingresar</ion-button
+    >
   </form>
 </ion-content>

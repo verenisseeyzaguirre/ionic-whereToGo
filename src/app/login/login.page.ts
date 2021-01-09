@@ -11,7 +11,7 @@ import {
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
   loginForm: FormGroup;
   validationMessages = {
     email: [
@@ -41,6 +41,7 @@ export class LoginPage implements OnInit {
       ),
     });
   }
-
-  ngOnInit() {}
+  authenticateUser(credentials: any) {
+    console.log(credentials);
+  }
 }
