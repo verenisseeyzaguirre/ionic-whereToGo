@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 export class AuthenticateService {
   userFilters = [];
   constructor() {}
-  async signIn(credentials: any) {
+  async getUsers() {
     const options = {
       headers: {
         'Content-Type': 'application/json',
@@ -16,6 +16,12 @@ export class AuthenticateService {
     };
     const response = await fetch(environment.authUserApi.baseUrl, options);
     let users = await response.json();
+    return users;
+  }
+
+  async signIn(credentials: any) {
+    let users = await this.getUsers();
+    let response = {};
     this.userFilters = users.filter(
       (user: any) =>
         user.email === credentials.email &&
@@ -23,19 +29,60 @@ export class AuthenticateService {
     );
 
     if (this.userFilters.length > 0) {
-      return {
+      response = {
         error: false,
         isAuthenticated: true,
         message: '',
         data: this.userFilters[0],
       };
     } else {
-      return {
+      response = {
         error: false,
         isAuthenticated: false,
         message: 'Usuario y/o contraseña incorrecta.',
         data: {},
       };
     }
+
+    return response;
+  }
+  async signUp(userToRegiter: any) {
+    let users = await this.getUsers();
+    let response = {};
+
+    this.userFilters = users.filter(
+      (user: any) => user.email === userToRegiter.email
+    );
+
+    if (this.userFilters.length > 0) {
+      response = {
+        error: false,
+        userExists: true,
+        message: 'El correo ingresado ya se encuentra registrado.',
+        data: {},
+      };
+    } else {
+      const options = {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        method: 'POST',
+        body: JSON.stringify(userToRegiter),
+      };
+
+      const responseSave = await fetch(
+        environment.authUserApi.baseUrl,
+        options
+      );
+      let data = await responseSave.json();
+      response = {
+        error: false,
+        userExists: false,
+        message: '',
+        data: data,
+      };
+    }
+    return response;
   }
 }

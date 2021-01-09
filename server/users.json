@@ -1,11 +1,25 @@
 {
-    "users": [
-        {
-            "id": "27051992",
-            "userName": "Renato",
-            "lastName": "De la Rosa",
-            "email": "srdelarosab@gmail.com",
-            "password": "MTIzNDU2"
-        }
-    ]
+  "users": [
+    {
+      "id": "27051992",
+      "userName": "Renato",
+      "lastName": "De la Rosa",
+      "email": "srdelarosab@gmail.com",
+      "password": "MTIzNDU2"
+    },
+    {
+      "firstName": "Sergio",
+      "lastName": "De la Rosa",
+      "email": "srdelarosab@icloud.com",
+      "password": "MTIzNDU2",
+      "id": "c28EuUU"
+    },
+    {
+      "firstName": "Sergio",
+      "lastName": "Bonilla",
+      "email": "rdelarosa@gmail.com",
+      "password": "MTIzNDU2",
+      "id": "HbLXOx0"
+    }
+  ]
 }

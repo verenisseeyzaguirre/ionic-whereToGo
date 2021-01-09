@@ -5,7 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
+import { AuthenticateService } from '../services/authenticate.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,9 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage {
+  responseSignUp: any = {};
   registerForm: FormGroup;
+  messageRegistered: string;
   validationMessages = {
     firstName: [{ type: 'required', message: 'El nombre es requerido.' }],
     lastName: [{ type: 'required', message: 'Los apellidos son requeridos.' }],
@@ -31,7 +34,9 @@ export class RegisterPage {
   };
   constructor(
     private navController: NavController,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authenticateService: AuthenticateService,
+    private alertControlller: AlertController
   ) {
     this.registerForm = this.formBuilder.group({
       firstName: new FormControl('', Validators.compose([Validators.required])),
@@ -53,7 +58,34 @@ export class RegisterPage {
     this.navController.navigateRoot('/login');
   }
 
-  registerUser(userToRegister: any) {
-    console.log(userToRegister);
+  async registerUser(userToRegister: any) {
+    try {
+      userToRegister.password = btoa(userToRegister.password);
+      this.responseSignUp = await this.authenticateService.signUp(
+        userToRegister
+      );
+      if (this.responseSignUp.userExists) {
+        this.messageRegistered = this.responseSignUp.message;
+      } else {
+        this.alertConfirm();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async alertConfirm() {
+    const alert = await this.alertControlller.create({
+      header: 'Felicidades!',
+      message: 'La cuenta se registró correctamente',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+            this.navController.navigateRoot('/login');
+          },
+        },
+      ],
+    });
+    await alert.present();
   }
 }
