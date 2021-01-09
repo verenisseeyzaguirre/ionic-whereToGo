@@ -38,14 +38,14 @@ export class LoginPage {
   ) {
     this.loginForm = this.formBuilder.group({
       email: new FormControl(
-        'srdelarosab@gmail.com',
+        '',
         Validators.compose([
           Validators.required,
           Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
         ])
       ),
       password: new FormControl(
-        '123456',
+        '',
         Validators.compose([Validators.required, Validators.minLength(6)])
       ),
     });
@@ -64,5 +64,8 @@ export class LoginPage {
     } catch (error) {
       console.log(error);
     }
+  }
+  goToRegister() {
+    this.navController.navigateForward('/register');
   }
 }

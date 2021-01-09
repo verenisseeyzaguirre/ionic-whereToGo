@@ -4,9 +4,12 @@
     <img src="assets/images/logo-h.png" />
   </figure>
   <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)">
-    <ion-item>
-      <ion-label>Email</ion-label>
-      <ion-input type="email" formControlName="email"></ion-input>
+    <ion-item lines="none">
+      <ion-input
+        type="email"
+        formControlName="email"
+        placeholder="Email"
+      ></ion-input>
     </ion-item>
     <div class="validation-messages">
       <ng-container *ngFor="let validation of validationMessages.email">
@@ -17,9 +20,12 @@
         </div>
       </ng-container>
     </div>
-    <ion-item>
-      <ion-label>Clave</ion-label>
-      <ion-input type="password" formControlName="password"></ion-input>
+    <ion-item lines="none">
+      <ion-input
+        type="password"
+        formControlName="password"
+        placeholder="Contraseña"
+      ></ion-input>
     </ion-item>
     <div class="validation-messages">
       <ng-container *ngFor="let validation of validationMessages.password">
@@ -42,7 +48,11 @@
   </form>
 </ion-content>
 <ion-footer>
-  <ion-button expand="block" shape="round" fill="outline"
+  <ion-button
+    expand="block"
+    shape="round"
+    fill="outline"
+    (click)="goToRegister()"
     >Registrarse</ion-button
   >
 </ion-footer>
