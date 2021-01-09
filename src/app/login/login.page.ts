@@ -5,6 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { NavController } from '@ionic/angular';
+import { AuthenticateService } from '../services/authenticate.service';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +15,8 @@ import {
 })
 export class LoginPage {
   loginForm: FormGroup;
+  responseAuthenticateUser: any = {};
+  messageAuthenticated: string;
   validationMessages = {
     email: [
       { type: 'required', message: 'El email es requerido.' },
@@ -26,22 +30,37 @@ export class LoginPage {
       },
     ],
   };
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private authenticateUser: AuthenticateService,
+    private navController: NavController
+  ) {
     this.loginForm = this.formBuilder.group({
       email: new FormControl(
-        '',
+        'srdelarosab@gmail.com',
         Validators.compose([
           Validators.required,
           Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
         ])
       ),
       password: new FormControl(
-        '',
+        '123456',
         Validators.compose([Validators.required, Validators.minLength(6)])
       ),
     });
   }
-  authenticateUser(credentials: any) {
-    console.log(credentials);
+  async loginUser(credentials: any) {
+    try {
+      this.responseAuthenticateUser = await this.authenticateUser.signIn(
+        credentials
+      );
+      if (this.responseAuthenticateUser.isAuthenticated) {
+        this.navController.navigateForward('/home');
+      } else {
+        this.messageAuthenticated = this.responseAuthenticateUser.message;
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
