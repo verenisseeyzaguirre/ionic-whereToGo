@@ -11,6 +11,15 @@ export const environment = {
     apiKey: 'AIzaSyBNXcbmORjL21_nziF443dTP0EBQY7V53c',
     defaultZoom: 14,
   },
+  openTripMap: {
+    defaultCity: 'Trujillo',
+    apikey: 'apikey=5ae2e3f221c38a28845f05b66b2ebd0c0a4a7428f0803525b45f11d8',
+    baseUrl: 'https://api.opentripmap.com/0.1/en/places/',
+    radius: '1000',
+    rate: '2',
+    formatCount: 'count',
+    formatJson: 'json',
+  },
   urlAvatarDefaultImage:
     'https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-512.png',
 };
