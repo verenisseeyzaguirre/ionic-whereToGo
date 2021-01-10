@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { MylocationPageRoutingModule } from './mylocation-routing.module';
 
 import { MylocationPage } from './mylocation.page';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MylocationPageRoutingModule
+    AgmCoreModule,
+    MylocationPageRoutingModule,
   ],
-  declarations: [MylocationPage]
+  declarations: [MylocationPage],
 })
 export class MylocationPageModule {}

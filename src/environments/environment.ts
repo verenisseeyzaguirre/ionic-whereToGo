@@ -7,6 +7,10 @@ export const environment = {
   authUserApi: {
     baseUrl: 'http://localhost:3027/users',
   },
+  gmapsApi: {
+    apiKey: 'AIzaSyBNXcbmORjL21_nziF443dTP0EBQY7V53c',
+    defaultZoom: 14,
+  },
   urlAvatarDefaultImage:
     'https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-512.png',
 };

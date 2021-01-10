@@ -7,4 +7,16 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <agm-map
+    *ngIf="currentCenter"
+    [latitude]="currentCenter.lat"
+    [longitude]="currentCenter.lng"
+    [zoom]="defaultZoom"
+  >
+    <agm-marker
+      [latitude]="currentCenter.lat"
+      [longitude]="currentCenter.lng"
+    ></agm-marker>
+  </agm-map>
+</ion-content>
