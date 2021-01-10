@@ -13,7 +13,7 @@ export class LoginGuard implements CanActivate {
     if (!isAuthenticated) {
       return true;
     } else {
-      this.navController.navigateRoot('/home');
+      this.navController.navigateRoot('/menu/home');
     }
   }
 }
