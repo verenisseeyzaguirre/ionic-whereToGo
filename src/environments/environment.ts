@@ -7,6 +7,8 @@ export const environment = {
   authUserApi: {
     baseUrl: 'http://localhost:3027/users',
   },
+  urlAvatarDefaultImage:
+    'https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-512.png',
 };
 
 /*

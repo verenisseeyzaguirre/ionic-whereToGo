@@ -13,11 +13,11 @@
     </ion-header>
     <ion-content>
       <ion-list>
-        <ion-item lines="none">
+        <ion-item lines="none" (click)="goToHome()">
           <ion-icon name="home-outline" color="primary" slot="start"></ion-icon>
           Principal</ion-item
         >
-        <ion-item lines="none">
+        <ion-item lines="none" (click)="goToMyProfile()">
           <ion-icon
             name="person-outline"
             color="primary"
@@ -25,9 +25,9 @@
           ></ion-icon>
           Mi Perfil</ion-item
         >
-        <ion-item lines="none">
+        <ion-item lines="none" (click)="goToMyLocation()">
           <ion-icon name="map-outline" color="primary" slot="start"></ion-icon>
-          Mapa</ion-item
+          Mi Ubicación</ion-item
         >
         <ion-item lines="none" (click)="logout()">
           <ion-icon

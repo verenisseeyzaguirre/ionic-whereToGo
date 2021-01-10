@@ -19,6 +19,20 @@ const routes: Routes = [
           import('../intro/intro.module').then((m) => m.IntroPageModule),
       },
       {
+        path: 'myprofile',
+        loadChildren: () =>
+          import('../myprofile/myprofile.module').then(
+            (m) => m.MyprofilePageModule
+          ),
+      },
+      {
+        path: 'mylocation',
+        loadChildren: () =>
+          import('../mylocation/mylocation.module').then(
+            (m) => m.MylocationPageModule
+          ),
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',

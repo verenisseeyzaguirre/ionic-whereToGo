@@ -20,4 +20,16 @@ export class MenuPage {
   closeMenu() {
     this.menuController.close();
   }
+  goToHome() {
+    this.navController.navigateForward('menu/home');
+    this.menuController.close();
+  }
+  goToMyProfile() {
+    this.navController.navigateForward('menu/myprofile');
+    this.menuController.close();
+  }
+  goToMyLocation() {
+    this.navController.navigateForward('menu/mylocation');
+    this.menuController.close();
+  }
 }

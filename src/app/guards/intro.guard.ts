@@ -13,6 +13,6 @@ export class IntroGuard implements CanActivate {
       return isIntroShowed;
     }
 
-    this.router.navigateByUrl('/intro');
+    this.router.navigateByUrl('menu/intro');
   }
 }

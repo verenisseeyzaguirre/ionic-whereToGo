@@ -41,6 +41,6 @@ export class IntroPage {
 
   closeSlides() {
     this.storage.set('isIntroShowed', true);
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/menu/home');
   }
 }

@@ -1,8 +1,9 @@
-<ion-content>
-  <br /><br /><br /><br /><br />
-  <figure class="ion-text-center ion-padding">
-    <img src="assets/images/logo-h.png" />
+<ion-content class="ion-padding">
+  <br /><br /><br />
+  <figure>
+    <img src="assets/images/logo-h-2.png" />
   </figure>
+  <br /><br />
   <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)">
     <ion-item lines="none">
       <ion-input
@@ -39,18 +40,18 @@
     <br /><br /><br />
     <div class="validation-messages">{{messageAuthenticated}}</div>
     <ion-button
+      size="large"
       expand="block"
-      shape="round"
       [disabled]="!loginForm.valid"
       type="submit"
       >Ingresar</ion-button
     >
   </form>
 </ion-content>
-<ion-footer>
+<ion-footer class="ion-padding">
   <ion-button
+    size="large"
     expand="block"
-    shape="round"
     fill="outline"
     (click)="goToRegister()"
     >Registrarse</ion-button
