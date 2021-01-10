@@ -8,7 +8,10 @@
 </ion-header>
 <ion-content class="ion-padding">
   <div *ngIf="placesFound">
-    <ion-card *ngFor="let place of placesFound">
+    <ion-card
+      *ngFor="let place of placesFound"
+      (click)="showDetailPlace(place)"
+    >
       <img src="assets/images/banner-places.jpg" alt="" />
       <ion-card-header>
         <ion-card-subtitle>

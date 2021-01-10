@@ -27,6 +27,13 @@ const routes: Routes = [
       import('./menu/menu.module').then((m) => m.MenuPageModule),
     canActivate: [HomeGuard],
   },
+  {
+    path: 'modalplace',
+    loadChildren: () =>
+      import('./modalplace/modalplace.module').then(
+        (m) => m.ModalplacePageModule
+      ),
+  },
 ];
 
 @NgModule({
