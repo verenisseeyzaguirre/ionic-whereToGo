@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { IntroGuard } from '../guards/intro.guard';
 
 import { MenuPage } from './menu.page';
 
@@ -12,6 +13,7 @@ const routes: Routes = [
         path: 'home',
         loadChildren: () =>
           import('../home/home.module').then((m) => m.HomePageModule),
+        canActivate: [IntroGuard],
       },
       {
         path: 'intro',
