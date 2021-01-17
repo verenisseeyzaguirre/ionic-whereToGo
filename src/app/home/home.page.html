@@ -6,7 +6,25 @@
     <ion-title>Principal</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content class="ion-padding">
+
+  <div>
+    <ion-buttons>
+      <ion-item>
+        <ion-label position="floating">Busca un destino</ion-label>
+        <ion-input #searchText ></ion-input>
+      </ion-item>
+      <ion-button 
+        slot="end" 
+        (click)="search(searchText)"    
+        class="searchBtn"
+      >
+        <ion-icon name="search-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </div>
+  
   <div *ngIf="placesFound">
     <ion-card
       *ngFor="let place of placesFound"
@@ -22,6 +40,7 @@
       <ion-card-content> Rating: {{place.rate}} </ion-card-content>
     </ion-card>
   </div>
+
   <div *ngIf="!placesFound">
     <ion-card>
       <div class="img-banner-skeleton">

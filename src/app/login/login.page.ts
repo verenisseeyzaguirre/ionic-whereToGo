@@ -58,6 +58,7 @@ export class LoginPage {
       if (this.responseAuthenticateUser.isAuthenticated) {
         this.storage.set('isAuthenticated', true);
         this.navController.navigateForward('/menu/home');
+        this.storage.set("authUser", this.responseAuthenticateUser.data);
       } else {
         this.messageAuthenticated = this.responseAuthenticateUser.message;
       }

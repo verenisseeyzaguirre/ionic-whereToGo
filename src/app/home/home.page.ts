@@ -17,7 +17,8 @@ export class HomePage {
     private modalController: ModalController
   ) {}
   async ionViewDidEnter() {
-    try {
+    await this.search();
+    /* try {
       this.cityFound = await this.opentripmapService.getCityFromSearch(
         environment.openTripMap.defaultCity
       );
@@ -32,7 +33,7 @@ export class HomePage {
       }
     } catch (error) {
       console.log(error);
-    }
+    } */
   }
 
   async showDetailPlace(place: any) {
@@ -46,5 +47,35 @@ export class HomePage {
       },
     });
     return await modal.present();
+  }
+
+  async search(textInput?: any) {
+    this.placesFound = null;
+    try {
+      this.cityFound = await this.opentripmapService.getCityFromSearch(
+        textInput && textInput.value
+          ? textInput.value
+          : environment.openTripMap.defaultCity
+      );
+      if (this.cityFound) {
+        let response = await this.opentripmapService.getPlacesByLatLon(
+          environment.openTripMap.radius,
+          this.cityFound.lon,
+          this.cityFound.lat,
+          environment.openTripMap.rate,
+          environment.openTripMap.formatCount
+        );
+        this.countPlacesFound = response.count;
+        this.placesFound = await this.opentripmapService.getPlacesByLatLon(
+          environment.openTripMap.radius,
+          this.cityFound.lon,
+          this.cityFound.lat,
+          environment.openTripMap.rate,
+          environment.openTripMap.formatJson
+        );
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
